@@ -5,7 +5,7 @@ import pickle
 from iris.model_api import make_prediction
 import numpy as np
 
-with open("models/iris/iris.pickle", "rb") as f:
+with open("iris/model/iris/iris.pickle", "rb") as f:
     model = pickle.load(f)
 
 def create_app(test_config=None):
