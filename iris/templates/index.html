@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Iris predictor</h1>
+    <form class="" action="{{ url_for('predict') }}" method="post">
+      <div class="form-group">
+        <label for="sepal-length">Sepal length</label>
+        <input type="number" name="sepal-length" value="1">
+      </div>
+      <div class="form-group">
+        <label for="sepal-width">Sepal width</label>
+        <input type="number" name="sepal-width" value="1">
+      </div>
+      <div class="form-group">
+        <label for="petal-length">Petal length</label>
+        <input type="number" name="petal-length" value="1">
+      </div>
+      <div class="form-group">
+        <label for="petal-width">Petal width</label>
+        <input type="number" name="petal-width" value="1">
+      </div>
+        <button type="submit" class="btn btn-primary" name="button">Predict</button>
+    </form>
+{% endblock %}
