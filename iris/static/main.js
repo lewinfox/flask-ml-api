@@ -3,24 +3,25 @@ console.log("main.js connected");
 window.addEventListener("load", () => {
 
   const getPrediction = (form) => {
+
+    // Instantiate a new request object
     let xhr = new XMLHttpRequest();
 
     // Collect form data
     let fd = new FormData(form);
 
-    // Convert to JS object so it can be converted to JSON
-    let fd_object = {};
-    fd.forEach((value, key) => {
-      fd_object[key] = value;
-    });
-    let fd_json = JSON.stringify(fd_object);
-
     // CASE: Success
     xhr.addEventListener("load", e => {
-      console.log(e.target.resposeText);
-      let responseObject = JSON.parse(e.target.responseText);
-      console.log(responseObject);
-      processResponse(responseObject);
+      try {
+        console.log(e.target.resposeText);
+        let responseObject = JSON.parse(e.target.responseText);
+        console.log(responseObject);
+        processResponse(responseObject);
+      }
+      catch(err) {
+        let responseContainer = document.getElementById("response-container");
+        responseContainer.innerHTML = err.message;
+      }
     })
 
     // CASE: failure
@@ -32,7 +33,7 @@ window.addEventListener("load", () => {
     xhr.open("POST", "/predict");
 
     // Send request
-    xhr.send(fd_json);
+    xhr.send(fd);
   }
 
   const processResponse = data => {

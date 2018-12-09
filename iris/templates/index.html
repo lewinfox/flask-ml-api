@@ -2,7 +2,7 @@
 
 {% block content %}
     <h1>Iris predictor</h1>
-    <form class="" action="{{ url_for('predict') }}" method="post">
+    <form id="input-form" class="" action="{{ url_for('predict') }}" method="post">
       <div class="form-group">
         <label for="sepal-length">Sepal length</label>
         <input type="number" name="sepal-length" value="1">
@@ -19,10 +19,14 @@
         <label for="petal-width">Petal width</label>
         <input type="number" name="petal-width" value="1">
       </div>
-        <button type="submit" class="btn btn-primary" name="button">Predict</button>
+      <button type="submit" class="btn btn-primary" name="button">Predict</button>
     </form>
 
-    <div id="response" class="mt-5 alert alert-secondary visible">
-      <p>This is where the result will go</p>
+
+    <div id="response-container" class="mt-5 alert alert-secondary visible">
     </div>
+
+    <script type="text/javascript" src="static/main.js"></script>
+
+    </script>
 {% endblock %}
