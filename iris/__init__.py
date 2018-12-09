@@ -39,19 +39,19 @@ def create_app(test_config=None):
 
     @app.route("/predict", methods=["POST"])
     def predict():
-        if request.method == "POST":
-            try:
-                print(request.form)
-                data = {}
-                data["sepal_length"] = request.form.get("sepal-length")
-                data["sepal_width"] = request.form.get("sepal-width")
-                data["petal_length"] = request.form.get("petal-length")
-                data["petal_width"] = request.form.get("sepal-length")
-                input_data = np.array([x for x in data.values()])
-                print(f"input_data: {input_data}")
-                result = make_prediction(model, input_data)
-                return jsonify(result)
-            except Exception as e:
-                print(e)
+        try:
+            print(request.form)
+            data = {
+                "sepal_length": request.form.get("sepal-length"),
+                "sepal_width": request.form.get("sepal-width"),
+                "petal_length": request.form.get("petal-length"),
+                "petal_width": request.form.get("petal-width")
+            }
+            input_data = np.array([x for x in data.values()])
+            print(f"input_data: {input_data}")
+            result = make_prediction(model, input_data)
+            return jsonify(result)
+        except Exception as e:
+            print(e)
 
     return app
