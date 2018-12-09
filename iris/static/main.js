@@ -39,15 +39,16 @@ window.addEventListener("load", () => {
   const processResponse = data => {
     console.log(data);
     const pred_species = data.pred_class;
-    const pred_prob = data.pred_prob
+    const pred_prob = `${data.pred_prob * 100}%`
     let responseContainer = document.getElementById("response-container");
     let outputHTML = `
       <p><strong>Predicted class:</strong> ${pred_species}
       <br>
-      <strong>Probability:</strong> ${pred_prob}
+      <strong>Prediction confidence:</strong> ${pred_prob}
       </p>
       `
     responseContainer.innerHTML = outputHTML;
+    responseContainer.classList.remove("invisible");
   }
 
   // Add the event listener to the form submit

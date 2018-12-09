@@ -1,32 +1,55 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Iris predictor</h1>
+<h1>Iris predictor</h1>
+<div class="row">
+  <div class="col-6">
+    <p>Input data is fed to a pre-trained sklearn random forest classifier
+    based on the iris dataset.</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-6">
     <form id="input-form" class="" action="{{ url_for('predict') }}" method="post">
-      <div class="form-group">
-        <label for="sepal-length">Sepal length</label>
-        <input type="number" name="sepal-length" value="1">
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Sepal length</span>
+        </div>
+        <input type="number" class="form-control" name="sepal-length" value="1" required min="0.1" step="0.1">
       </div>
-      <div class="form-group">
-        <label for="sepal-width">Sepal width</label>
-        <input type="number" name="sepal-width" value="1">
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Sepal width</span>
+        </div>
+        <input type="number" class="form-control" name="sepal-width" value="1" required min="0.1" step="0.1">
       </div>
-      <div class="form-group">
-        <label for="petal-length">Petal length</label>
-        <input type="number" name="petal-length" value="1">
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Petal length</span>
+        </div>
+        <input type="number" class="form-control" name="petal-length" value="1" required min="0.1" step="0.1">
       </div>
-      <div class="form-group">
-        <label for="petal-width">Petal width</label>
-        <input type="number" name="petal-width" value="1">
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Petal width</span>
+        </div>
+        <input type="number" class="form-control" name="petal-width" value="1" required min="0.1" step="0.1">
       </div>
-      <button type="submit" class="btn btn-primary" name="button">Predict</button>
+
+      <button type="submit" class="btn btn-primary" name="button">What's that flower?</button>
     </form>
 
+  </div>
+  </div>
 
-    <div id="response-container" class="mt-5 alert alert-secondary visible">
-    </div>
-
-    <script type="text/javascript" src="static/main.js"></script>
-
-    </script>
+  <div class="col-6">
+    <div id="response-container" class="mt-5 alert alert-secondary invisible"></div>
+  </div>
+</div>
+<script type="text/javascript" src="static/main.js"></script>
 {% endblock %}
