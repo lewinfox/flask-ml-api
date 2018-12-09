@@ -2,7 +2,7 @@ import os
 from flask import Flask, render_template, request
 from flask.json import jsonify
 import pickle
-from model_api import make_prediction
+from iris.model_api import make_prediction
 import numpy as np
 
 with open("models/iris/iris.pickle", "rb") as f:
@@ -45,8 +45,8 @@ def create_app(test_config=None):
             data["sepal_width"] = request.form.get("sepal-width")
             data["petal_length"] = request.form.get("petal-length")
             data["petal_width"] = request.form.get("sepal-length")
-            model_input_data = np.array([x for x in data.values()])
-            result = make_prediction(model, model_input_data)
+            input_data = np.array([x for x in data.values()])
+            result = make_prediction(model, input_data)
             return jsonify(result)
 
     return app
