@@ -7,4 +7,4 @@ Also contains the iris dataset and a Jupyter notebook for training and pickling 
 To run:
 * `export FLASK_APP=iris`
 * `export FLASK_ENV=development`
-* `flask run`
+* `flask run` or `python run.py`
