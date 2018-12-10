@@ -3,14 +3,14 @@
 {% block content %}
 <h1>Iris predictor</h1>
 <div class="row">
-  <div class="col-6">
+  <div class="col-lg-6 col-md-12">
     <p>Input data is fed to a pre-trained sklearn random forest classifier
     based on the iris dataset.</p>
   </div>
 </div>
 
 <div class="row">
-  <div class="col-6">
+  <div class="col-lg-6 col-md-12">
     <form id="input-form" class="" action="{{ url_for('predict') }}" method="post">
 
       <div class="input-group mb-3">
@@ -47,7 +47,7 @@
   </div>
   </div>
 
-  <div class="col-6">
+  <div class="col-lg-6 col-md-12">
     <div id="response-container" class="mt-5 alert alert-secondary invisible"></div>
   </div>
 </div>
