@@ -16,7 +16,7 @@ def make_prediction(model, data):
 with open("model/iris.pickle", "rb") as f:
     model = pickle.load(f)
 
-# Create and configure app
+# Create app
 app = Flask(__name__)
 
 # define routes
@@ -41,6 +41,7 @@ def predict():
         return jsonify(result)
     except Exception as e:
         print(e)
+
 
 if __name__ == "__main__":
     app.run()
