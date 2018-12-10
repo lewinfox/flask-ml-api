@@ -1,23 +1,8 @@
-import os
-from flask import Flask, render_template, request
-from flask.json import jsonify
-import pickle
+from iris import app
 import numpy as np
-
-
-# Function to handle model prediction
-def make_prediction(model, data):
-    species = model.predict([data])[0]
-    pred_prob = max(model.predict_proba([data])[0])
-    return {"pred_class": species, "pred_prob": pred_prob}
-
-
-# Load the picked model
-with open("model/iris.pickle", "rb") as f:
-    model = pickle.load(f)
-
-# Create app
-app = Flask(__name__)
+from flask.json import jsonify
+from flask import render_template, request
+from model import model, make_prediction
 
 # define routes
 @app.route("/")
@@ -41,7 +26,3 @@ def predict():
         return jsonify(result)
     except Exception as e:
         print(e)
-
-
-if __name__ == "__main__":
-    app.run()
