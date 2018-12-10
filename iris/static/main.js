@@ -12,7 +12,7 @@ window.addEventListener("load", () => {
 
     // CASE: Success
     xhr.addEventListener("load", e => {
-      try {
+      try {        
         let responseObject = JSON.parse(e.target.responseText);
         console.log("Prediction received:");
         console.log(responseObject);
