@@ -13,8 +13,8 @@ window.addEventListener("load", () => {
     // CASE: Success
     xhr.addEventListener("load", e => {
       try {
-        console.log(e.target.resposeText);
         let responseObject = JSON.parse(e.target.responseText);
+        console.log("Prediction received:");
         console.log(responseObject);
         processResponse(responseObject);
       }
@@ -37,7 +37,6 @@ window.addEventListener("load", () => {
   }
 
   const processResponse = data => {
-    console.log(data);
     const pred_species = data.pred_class;
     const pred_prob = `${data.pred_prob * 100}%`
     let responseContainer = document.getElementById("response-container");
@@ -55,7 +54,6 @@ window.addEventListener("load", () => {
   const form = document.getElementById("input-form");
   form.addEventListener("submit", e => {
     e.preventDefault();
-    console.log("click");
     getPrediction(form);
   })
 
