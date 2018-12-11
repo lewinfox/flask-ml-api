@@ -1,5 +1,4 @@
 from iris import app
-import numpy as np
 from flask.json import jsonify
 from flask import render_template, request
 from model import model, make_prediction
@@ -20,7 +19,7 @@ def predict():
             "petal_length": request.form.get("petal-length"),
             "petal_width": request.form.get("petal-width")
         }
-        input_data = np.array([x for x in data.values()])
+        input_data = [x for x in data.values()]
         print(f"input_data: {input_data}")
         result = make_prediction(model, input_data)
         return jsonify(result)
