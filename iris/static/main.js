@@ -1,3 +1,5 @@
+import * as responseHandler from "./response_handler.js";
+
 console.log("main.js connected");
 
 window.addEventListener("load", () => {
@@ -12,11 +14,15 @@ window.addEventListener("load", () => {
 
     // CASE: Success
     xhr.addEventListener("load", e => {
-      try {        
+      try {
         let responseObject = JSON.parse(e.target.responseText);
+
+        // Log the response to the console to help debugging
         console.log("Prediction received:");
         console.log(responseObject);
-        processResponse(responseObject);
+
+        // Do stuff! This custom function will be defined per-application
+        responseHandler.processResponse(responseObject);
       }
       catch(err) {
         let responseContainer = document.getElementById("response-container");
@@ -26,7 +32,7 @@ window.addEventListener("load", () => {
 
     // CASE: failure
     xhr.addEventListener("error", e => {
-      alert("Something went wrong");
+      alert(`Something went wrong: ${e}`);
     })
 
     // Build the request
@@ -36,19 +42,6 @@ window.addEventListener("load", () => {
     xhr.send(fd);
   }
 
-  const processResponse = data => {
-    const pred_species = data.pred_class;
-    const pred_prob = `${data.pred_prob * 100}%`
-    let responseContainer = document.getElementById("response-container");
-    let outputHTML = `
-      <p><strong>Predicted class:</strong> ${pred_species}
-      <br>
-      <strong>Prediction confidence:</strong> ${pred_prob}
-      </p>
-      `
-    responseContainer.innerHTML = outputHTML;
-    responseContainer.classList.remove("invisible");
-  }
 
   // Add the event listener to the form submit
   const form = document.getElementById("input-form");
